@@ -1,0 +1,37 @@
+header{
+    padding: 5px 115px 5px 115px;
+    display: flex;
+    flex-flow: row;
+    background-color: whitesmoke;
+}
+
+.brand-text{
+    font-family: 'Lobster', cursive;
+    font-size: 32px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    color: mediumseagreen;
+    line-height: 0;
+}
+
+.brand-text:hover{
+    text-decoration: none;
+}
+
+.ml-auto{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.header-buttons{
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+a:hover {
+    text-decoration: none;
+}
+

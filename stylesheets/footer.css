@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.content{
+    flex: 1 0 auto;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.footer-content{
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 200;
+    background-color: #e7e7e7;
+    padding: 30px;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+}
+
+.footer-copyright{
+    text-align: center;
+}
+
+.footer-below-copyright{
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 400;
+    padding: 5px 115px 5px 115px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 400px;
+}
+
+.link {
+    color: black;
+}
+
+.link:hover{
+    color: mediumseagreen;
+    text-decoration: none;
+}
+
+.divider{
+    background-color: #9e9e9e;
+    margin: 10px 20px 0 10px;
+    height: 2px;
+}

@@ -1,0 +1,64 @@
+.content{
+    font-family: 'Kumbh Sans', sans-serif;
+    gap: 50px;
+    font-weight: 800;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 0 150px 0 150px;
+    padding: 30px 10px 30px 10px;
+}
+
+.image{
+    horiz-align: center;
+    border-radius: 20px;
+    width: 80%;
+    height: auto;
+}
+
+h3{
+    font-family: 'Ms Madi', cursive;
+    font-size: xxx-large;
+    user-select: none;
+}
+
+h4{
+    padding: 40px 0 40px 0;
+    text-align: center;
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 800;
+    color: #777676;
+}
+
+.top-funding{
+    padding: 5px 30px 5px 30px;
+}
+
+.animator-content{
+    position: absolute;
+}
+
+.animator-content:nth-child(1){
+    animation-name: fade;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    animation-direction: alternate;
+}
+
+.animator-content:nth-child(2){
+    animation-name: fade;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes fade{
+    0%,50% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
