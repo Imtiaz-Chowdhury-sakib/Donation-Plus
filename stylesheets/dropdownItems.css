@@ -1,0 +1,9 @@
+.dropdown-icon-text {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.dropdown-item:target{
+    background-color: mediumseagreen !important;
+}

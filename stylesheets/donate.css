@@ -1,0 +1,72 @@
+body {
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+section {
+    display: flex;
+    margin: 6rem 10rem 6rem 10rem;
+    gap: 1.5rem;
+}
+
+.story-box {
+    background-color: #c9c9c9;
+    width: 60%;
+    height: max-content;
+    border-radius: 1.5rem;
+    filter: drop-shadow(12px 12px 20px #bebbbb);
+}
+
+.donate-box {
+    color: white;
+    background-color: mediumseagreen;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 3.5rem;
+    width: 40%;
+    height: max-content;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    filter: drop-shadow(12px 12px 20px #bebbbb);
+}
+
+.story-image {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.story-content {
+    padding: 1rem
+}
+
+.btn-background {
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.input-box {
+    margin-bottom: 0.5rem
+}
+
+.donate-box-top-donor {
+    display: flex;
+    background-color: #e9e8e8;
+    width: 100%;
+    border-radius: 1rem;
+    color: #777676;
+    padding: 0.5rem;
+    gap: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 1rem
+}
+
+.donor-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-0-margin-padding {
+    margin: 0;
+    padding: 0;
+}
+
