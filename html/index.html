@@ -118,33 +118,31 @@
                     Category
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
+                    <a class="dropdown-item" href="../category/medical_index.php ">
                         <div class="dropdown-icon-text" >
-                            <a class="dropdown-item" href=" ">
                             <img height="18" src="../res/navbar-dropdown-menu-medical-button.svg"
                                  style="align-content: center" width="18"
                                  alt="home">
                             Medical
                         </div>
                     </a>
-
+                    <a class="dropdown-item" href="../category/education_index.php">
                         <div class="dropdown-icon-text">
-                            <a class="dropdown-item" href=" ">
                             <img alt="educationIco" height="18" src="../res/navbar-dropdown-menu-school-button.svg"
                                  width="18">
                             Education
                         </div>
                     </a>
-
+                    <a class="dropdown-item" href="../category/animal_index.php">
                         <div class="dropdown-icon-text">
-                            <a class="dropdown-item" href=" ">
                             <img alt="educationIco" height="18" src="../res/animal.svg"
                                  width="18">
                             Animal
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href=" ">
+
+                    <a class="dropdown-item" href="../category/others_index.php">
                         <div class="dropdown-icon-text">
                             <img alt="miscIco" height="18" src="../res/navbar-dropdown-menu-misc-button.svg" width="18">
                             Others
@@ -154,7 +152,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href=" ">
+                <a class="nav-link" href="../index.php">
                     <img height="24" src="../res/navbar-contact-button.svg" style="align-content: center; gap: 5px"
                          width="24"
                          alt="home">
@@ -167,9 +165,9 @@
     <div class="ml-auto p2">
         <form class="form-inline my-2 my-lg-0" method="get"  action="../search.php">
             <input class="form-control" type="search" placeholder="Search By Title" aria-label="Search" name="search">
-                <button class="btn btn btn-secondary" type="submit" name="submit">
-                    <img alt="search" height="20" src="../res/navbar-search-button.svg" width="20">
-                </button>
+            <button class="btn btn btn-secondary" type="submit" name="submit">
+                <img alt="search" height="20" src="../res/navbar-search-button.svg" width="20">
+            </button>
 
         </form>
     </div>
@@ -218,7 +216,7 @@
                     <p class="card-text">
                         <?php $res = $result['details']; ?>
                         <?php echo substr("$res", 0, 200) ."....." ;?>
-
+                        <a href="../donateForm_index.php?p_id=<?php echo $result['p_id'];?>">Read More</a>
                     </p>
                     <div >
 
@@ -246,7 +244,13 @@ $last_page = "<a href='../index.php?page=$total_pages#top_donation'>".'Last Page
 
 <!--Pagination-->
 <div>
-
+    <?php echo $first_page ?>
+    <?php
+        for($i=1;$i<=$total_pages;$i++){
+            echo "<a href='../index.php?page=".$i."#top_donation'>".$i."";
+    }
+    ?>
+    <?php echo $last_page ?>
 </div>
 
 <!-- Footer Panel -->
