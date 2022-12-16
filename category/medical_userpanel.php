@@ -1,40 +1,29 @@
 <?php
-
-	require_once('dbConnection/dbconn.php');
-	$conn = new mysqli('localhost', 'root', '', 'donation_plus');
-
-			$per_page = 3;
-			if(isset($_GET["page"])){
-				$page = $_GET["page"];
-			}else{
-				$page=1;
-			}
-			$start_from=($page-1) * $per_page;
-
-
-	$post = mysqli_query( $conn, "SELECT user.name, post.p_id, post.user_id, post.title,post.details,post.date,post.asking_amount,post.collecting_amount,post.image
-                                    FROM post INNER JOIN user ON (post.user_id = user.id)  WHERE status = 1 ORDER BY p_id DESC limit $start_from,$per_page " )
-		or die("Can not execute query");
-
+session_start();
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="900;url=logout.php" http-equiv="refresh"/>
-    <title>DonationPlus | User Panel</title>
+    <title>DonationPlus | Search</title>
     <link href="../tab.ico" rel="icon">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
 
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <link href="../stylesheets/header.css" rel="stylesheet">
     <link href="../stylesheets/navbar.css" rel="stylesheet">
 
+    <!-- Connect stylesheets  -->
+    <link href="../stylesheets/header.css" rel="stylesheet">
+    <link href="../stylesheets/navbar.css" rel="stylesheet">
     <link href="../stylesheets/footer.css" rel="stylesheet">
     <link href="../stylesheets/dropdownItems.css" rel="stylesheet">
+    <link href="../stylesheets/indexContent.css" rel="stylesheet">
     <link href="../stylesheets/scrollbar.css" rel="stylesheet">
-
 
     <!-- Font Import    -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -53,45 +42,9 @@
             font-family: 'Kumbh Sans', sans-serif;
         }
 
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-
-        }
-
-        .container-body {
-            padding: 0 120px 0 120px;
-            margin-top: 90px;
-        }
-
-        .container-body-donate-title {
-            color: #777676;
-            font-size: xx-large;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        a {
-            color: #777676;
-        }
-
-        .page-number {
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            color: #777676;
-            font-weight: bold;
-            padding: 10px;
-        }
-
         .results {
             display: grid;
-            padding: 0 0 3rem 0;
+            padding: 3rem 0 3rem 0;
             gap: 2rem;
             grid: auto / auto auto auto;
         }
@@ -102,7 +55,9 @@
         }
     </style>
 
+
 </head>
+
 <body>
 
 <nav class="navbar navbar-expand-lg sticky-top" id="navbar" style="position: absolute; margin-top: 55px; width: 100%">
@@ -198,12 +153,12 @@
                 type="button">
             <img alt="avatarIco" height="24" src="../res/header-login-avatar.svg" width="24">
             <?php if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
-   echo $_SESSION['name'];
-} ?>
+                echo $_SESSION['name'];
+            } ?>
         </button>
 
         <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="../userEditProfileForm.php">
                 <div style="display: flex; align-items: center; gap: 5px">
                     <img alt="navdrop" height="20" src="../res/user-navbar-dropdown-edit-button.svg" width="20">
                     Edit Profile
@@ -217,144 +172,72 @@
     </div>
 </header>
 
-<div class="container container-body" style="margin-bottom: 70px; padding-bottom: 30px;
-    background-color: rgb(231,231,231); filter: drop-shadow(12px 12px 20px #bebbbb); border-radius: 20px;">
-    <div class="container-body-donate-title" style="user-select: none">
-        Create a donation post
-    </div>
-    <form action="../userPanel.php" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-            <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between">
-                <input class="form-control" placeholder="Title (Required)" name="title">
-                <span class="error" style="color: red;">
-                <?php echo $title_error_msg; ?>
-                </span>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">$</div>
-                    </div>
-                    <input class="form-control" id="inlineFormInputGroup" placeholder="Asking Amount" type="number" name="asking_amount" min="1">
-                    <span class="error" style="color: red;">
-                     <?php echo $asking_amount_error_msg; ?>
-                </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <textarea class="form-control" placeholder="Enter description " rows="3" name="details" ></textarea>
-            <span class="error" style="color: red;">
-                <?php echo $details_error_msg; ?>
-                </span>
-        </div>
-
-
-        <div style="display: flex;  justify-content: space-between; gap: 1rem">
-            <div class="mb-3" style="width: 100vh;">
-                <label class="form-label">Enter Date</label>
-                <input class="form-control" name="date" placeholder="Enter date" type="date">
-                <div class="form-text" style="color: #777676"></div>
-            </div>
-
-            <div style="width: 100vh">
-                <label class="form-label">Select a category</label>
-                <input class="form-control" name="category" type="hidden">
-                <select class="form-control" name="category">
-                    <option>...</option>
-                    <option>Medical</option>
-                    <option>Education</option>
-                    <option>Animal</option>
-                    <option>Others</option>
-                </select>
-                <span class="error" style="color: red;">
-                <?php echo $category_error_message; ?>
-                </span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleFormControlFile1">Enter a cover image</label>
-            <input class="form-control-file" id="exampleFormControlFile1" name="uploadfile" type="file">
-            <span class="error" style="color: red;">
-                <?php echo $image_error_msg; ?>
-                </span>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: flex-end">
-            <button class="btn btn-success" name="upload"  type="submit"> Create Donate Post
-            </button>
-
-        </div>
-    </form>
-
-</div>
-
-<div class="container-body-donate-title" id="recent_donation" style="user-select: none">
-    Recent Donations Post
-</div>
-
-<section class="container">
+<section class="container" style="padding-top: 2rem">
     <div style="padding: 2rem 7rem 2rem 7rem">
-        <section class="results" style="justify-content: center; align-content: center">
+        <div style="text-align: center">
+            <h1> MEDICAL </h1>
+        </div>
+
+        <section class="results">
             <?php
-                if($post){
-	            while($result=$post->fetch_assoc()) {
+            $found = false;
+            $textBox_data = true;
             ?>
 
-            <div class="card shadow-lg custom-card">
-                <img alt="Card image cap" class="card-img-top"
-                     src="../image/<?php echo $result['p_id'].'.'.$result['image'] ?>"
-                     style="border-radius: 10px">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $result['title']; ?></h5>
-                    <p class="card-text">
-                        <?php $res = $result['details']; ?>
-                        <?php echo substr("$res", 0, 200) ."....." ;?>
-                        <a href="../donateForm.php?p_id=<?php echo $result['p_id'];?>">Read More</a>
-                    </p>
-                    <div >
+            <?php include('../dbConnection/dbconn.php');
 
+            if ($textBox_data) {
+
+                $post = mysqli_query($conn, "SELECT * FROM post where category like '%Medical%' and status = 1")
+                or die("Can not execute query");
+                $found = true;
+
+            }
+
+            if ($found && mysqli_num_rows($post)) {
+                while ($result = $post->fetch_assoc()) {
+                    ?>
+
+                    <div class="card shadow-lg custom-card">
+                        <img alt="Card image cap" class="card-img-top" src="../image/<?php echo $result['p_id'].'.'.$result['image'] ?>"
+                             style="border-radius: 10px">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $result['title']; ?></h5>
+                            <p class="card-text">
+                                <?php $res = $result['details']; ?>
+                                <?php echo substr("$res", 0, 200) ."....." ;?>
+                                <a href="../donateForm.php?p_id=<?php echo $result['p_id'];?>">Read More</a>
+                            </p>
+                            <a class="btn btn-success" href="../donateForm.php??p_id=<?php echo $result['p_id'];?>">Donate</a>
+                        </div>
                     </div>
-                    <a class="btn btn-success" href="../donateForm.php?p_id=<?php echo $result['p_id'];?>">Donate</a>
+
+                    <?php
+                }
+            } else { ?>
+                <div></div>
+                <div style=" display:flex; justify-content: center">
+                    <h4 style="color: #d50000; font-weight: 200">Result not found</h4>
                 </div>
-            </div>
             <?php } ?>
-            <?php } ?>
+
         </section>
     </div>
+
+
 </section>
 
-<?php
-		$result= mysqli_query( $conn, "SELECT * FROM post where status = 1" ) or die("Can not execute query");
-        $total_rows= mysqli_num_rows($result);
-        $total_pages=ceil($total_rows/$per_page);
-        $first_page = "<span class='pagination page-number'> <a href='../userPanel.php?page=1#recent_donation'>".'First
-    Page'."</a>";
-$last_page = "<a href='../userPanel.php?page=$total_pages#recent_donation'>".'Last Page'."</a>";
-?>
 
-
-<!--Pagination-->
-<div>
-    <?php echo $first_page ?>
-    <?php
-        for($i=1;$i<=$total_pages;$i++){
-            echo "<a href='../userPanel.php?page=".$i."#recent_donation'>".$i."";
-    }
-    ?>
-    <?php echo $last_page ?>
-</div>
-
-
+<!-- Footer Panel -->
 <footer class="mt-auto">
     <div class="footer-content">
         <div class="footer-copyright">
             <p> &copy; Copyright 2022 DonationPlus</p>
         </div>
         <div class="footer-below-copyright">
-            <div class="mr-auto" style="display: flex; gap: 10px; flex-direction: column">
+            <div class="mr-auto" style="display: flex; gap: 20px; flex-direction: column">
                 <a href="../index.php">
-                    <img alt="ico"
+                    <img alt="DonationIco"
                          height="30"
                          src="https://img.icons8.com/external-outline-juicy-fish/60/26e07f/external-donate-humanitarian-outline-outline-juicy-fish-4.png"
                          width="30">
@@ -380,7 +263,7 @@ $last_page = "<a href='../userPanel.php?page=$total_pages#recent_donation'>".'La
                 <p style="font-weight: 200; color: #777676; margin-top: 16px"> &copy; 2018-2022 DonationPlus</p>
             </div>
 
-            <div style="display: flex; gap: 20px; flex-direction: row">
+            <div style="display: flex; gap: 25px; flex-direction: row">
                 <a href="#">
                     <svg class="bi bi-facebook" fill="#0075ff" height="16" viewBox="0 0 16 16" width="16"
                          xmlns="http://www.w3.org/2000/svg">
@@ -419,5 +302,6 @@ $last_page = "<a href='../userPanel.php?page=$total_pages#recent_donation'>".'La
         </div>
     </div>
 </footer>
+
 </body>
 </html>
