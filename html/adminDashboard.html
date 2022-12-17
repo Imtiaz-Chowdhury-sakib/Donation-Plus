@@ -56,7 +56,12 @@ session_start();
                 Post Details
             </button>
 
-
+            <div aria-labelledby="post-details" class="dropdown-menu"
+                 style="background: rgba(131,131,131,0.18); backdrop-filter: blur(5px); border-radius: 20px">
+                <a class="dropdown-item" href="../adminViewPost.php">View Post</a>
+                <a class="dropdown-item" href="../adminEditPostList.php">Edit Post</a>
+                <a class="dropdown-item" href="../adminDeletePostForm.php">Remove Post</a>
+            </div>
         </div>
 
 
@@ -66,14 +71,18 @@ session_start();
                     id="user-details" style="align-items: center" type="button">
                 User Details
             </button>
-
+            <div aria-labelledby="user-details" class="dropdown-menu"
+                 style="background: rgba(131,131,131,0.18); backdrop-filter: blur(5px); border-radius: 20px">
+                <a class="dropdown-item" href="../adminUserViewForm.php">View User</a>
+                <a class="dropdown-item" href="../adminUserRemoveForm.php">Remove User</a>
+            </div>
         </div>
 
-        <a href=" "> User Message </a>
+        <a href="#"> User Message </a>
 
-        <a href=" "> Pending Post </a>
+        <a href="#"> Pending Post </a>
 
-        <a href=" "> Transaction History </a>
+        <a href="#"> Transaction History </a>
 
     </div>
 
@@ -105,7 +114,7 @@ session_start();
                      style="display: flex; justify-content: space-between; background: mediumseagreen; border-radius: 1rem 1rem 0 0">
                     <img alt="img" height="64" src="../res/admin-index-card-people.svg" width="64">
                     <div style="display: flex; flex-direction: column; align-content: center; justify-content: center; text-align: end; color: white">
-                         <?php include 'dashusercount.php';?>
+                        <?php include 'dashusercount.php';?>
                         <h5>Total User</h5>
                     </div>
                 </div>
@@ -113,10 +122,10 @@ session_start();
                 <div class="p-3 border-2"
                      style="display: flex; align-content: center; align-items: center; justify-content: space-between; background: #e1e1e1; border-radius: 0 0 1rem 1rem">
                     <p style="margin: 0; font-weight: bold"> View User Details </p>
-                    <a href=" ">
-                    <button class="btn btn-success" style="border-radius: 50px">
-                        <img alt="img" src="../res/admin-index-card-button.svg">
-                    </button>
+                    <a href="../adminUserViewForm.php">
+                        <button class="btn btn-success" style="border-radius: 50px">
+                            <img alt="img" src="../res/admin-index-card-button.svg">
+                        </button>
                     </a>
                 </div>
             </div>
@@ -137,10 +146,10 @@ session_start();
                 <div class="p-3 border-2"
                      style="display: flex; align-content: center; align-items: center; justify-content: space-between; background: #e1e1e1; border-radius: 0 0 1rem 1rem">
                     <p style="margin: 0; font-weight: bold" > View Donations </p>
-                    <a href=" ">
-                    <button class="btn btn-success" style="border-radius: 50px" >
-                        <img alt="img" src="../res/admin-index-card-button.svg">
-                    </button>
+                    <a href="../adminViewPost.php">
+                        <button class="btn btn-success" style="border-radius: 50px" >
+                            <img alt="img" src="../res/admin-index-card-button.svg">
+                        </button>
                     </a>
                 </div>
 
@@ -160,7 +169,7 @@ session_start();
                 <div class="p-3 border-2"
                      style="display: flex; align-content: center; align-items: center; justify-content: space-between; background: #e1e1e1; border-radius: 0 0 1rem 1rem">
                     <p style="margin: 0; font-weight: bold"> View Messages </p>
-                    <a href=" ">
+                    <a href="#">
                         <button class="btn btn-success" style="border-radius: 50px">
                             <img alt="img" src="../res/admin-index-card-button.svg">
                         </button>
@@ -194,7 +203,7 @@ session_start();
                 <div class="p-3 border-2"
                      style="display: flex; align-content: center; align-items: center; justify-content: space-between; background: #e1e1e1; border-radius: 0 0 1rem 1rem">
                     <p style="margin: 0; font-weight: bold"> View Pending Posts </p>
-                    <a href=" ">
+                    <a href="#">
                         <button class="btn btn-success" style="border-radius: 50px">
                             <img alt="img" src="../res/admin-index-card-button.svg">
                         </button>
