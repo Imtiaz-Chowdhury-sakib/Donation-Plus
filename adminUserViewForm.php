@@ -78,11 +78,11 @@ session_start();
             </div>
         </div>
 
-        <a href="adminUserMassegeForm.php"> User Message </a>
+        <a href="#"> User Message </a>
 
-        <a href="adminPendingPost.php"> Pending Post </a>
+        <a href=""> Pending Post </a>
 
-        <a href="transactionHistory.php"> Transaction History </a>
+        <a href="#"> Transaction History </a>
 
     </div>
 
