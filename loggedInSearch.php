@@ -112,7 +112,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href=" ">
+                <a class="nav-link" href="./loggedInContact.php">
                     <img alt="home" height="24" src="../res/navbar-contact-button.svg"
                          style="align-content: center; gap: 5px"
                          width="24">
