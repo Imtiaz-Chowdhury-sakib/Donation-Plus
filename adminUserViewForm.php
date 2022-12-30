@@ -152,7 +152,7 @@ font-family: 'Kumbh Sans', sans-serif">
                                 while ($row = mysqli_fetch_array($result)) {
                                     echo "<tbody>
                                 <tr>
-                                    <td>" . $row['name'] . "</td>
+                                    <td>Hello" . $row['name'] . "</td>
                                     <td>" . $row['email'] . "</td>
                                     <td>" . $row['address'] . "</td>
                                   
