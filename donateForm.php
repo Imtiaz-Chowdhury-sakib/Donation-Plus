@@ -195,7 +195,7 @@ $u_id = $_SESSION['id'];
         $row1 = $result->fetch_assoc();
         ?>
         <a class="countperson" "?p_id=<?php echo $row1['p_id']; ?>
-        <h6><?php echo $row1['COUNT(transaction.donate_id)']; ?> person donated </h6>
+        <h6><?php echo $row1['COUNT(transaction.donate_id)']; ?> donations </h6>
         </a>
         <hr style="background-color: white; height: 3px; border-radius: 1rem">
 
@@ -213,26 +213,23 @@ $u_id = $_SESSION['id'];
             <h4> Top Donors </h4>
         </div>
 
-        <div class="donate-box-top-donor" >
-            <img height="64" src="res/header-login-avatar.svg" width="64">
-            <div class="donor-info">
-                <h5 class="text-0-margin-padding">Person 1</h5>
-            </div>
-        </div>
+          <?php
 
-        <div class="donate-box-top-donor" >
-            <img height="64" src="res/header-login-avatar.svg" width="64">
-            <div class="donor-info">
-                <h5 class="text-0-margin-padding">Person 2</h5>
-            </div>
-        </div>
+        $query = "SELECT * FROM user join (SELECT u_id,SUM(d_amount) AS total FROM transaction WHERE donate_id =$p_id  GROUP by u_id ) AS tp ON tp.u_id = user.id order by total DESC limit 3";
+        $result = mysqli_query($conn,$query);
+        while($row = mysqli_fetch_assoc($result)) {
 
+            echo '
         <div class="donate-box-top-donor" >
             <img height="64" src="res/header-login-avatar.svg" width="64">
             <div class="donor-info">
-                <h5 class="text-0-margin-padding">Person 3</h5>
+                <h5 class="text-0-margin-padding">'.$row["name"].'</h5>
+                <h6 class="text-0-margin-padding">$'.$row["total"].'</h6>
             </div>
-        </div>
+        </div>';
+        }
+        ?>
+
 
     </form>
 </section>
