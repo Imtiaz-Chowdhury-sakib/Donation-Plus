@@ -77,11 +77,11 @@ session_start();
                 <a class="dropdown-item" href="adminUserRemoveForm.php">Remove User</a>
             </div>
         </div>
-        <a href="#"> User Message </a>
+        <a href="./adminUserMassegeForm.php"> User Message </a>
 
-        <a href="#"> Pending Post </a>
+        <a href="./adminPendingPost.php"> Pending Post </a>
 
-        <a href="#"> Transaction History </a>
+        <a href="./transactionHistory.php"> Transaction History </a>
 
     </div>
 
