@@ -221,8 +221,10 @@ session_start();
             <img src="./res/header-login-avatar.svg" style="height: 150px; width: 150px; margin-left: 300px; margin-top: 30px">
 
             <div style="display: flex; flex-direction: column; justify-content: center;">
-                <div style="display:flex;flex-direction: row; gap: 20px; justify-content: center">
-                    <h3 style="text-decoration: none">John wick</h3>
+                <div style="display:flex;flex-direction: row; gap: 20px; justify-content: center; font-size: 30px">
+                    <?php if(isset($_SESSION['name']) && !empty($_SESSION['name'])) {
+                        echo $_SESSION['name'];
+                    } ?>
                     <img src="./res/icons8-warranty-48.png" style="height: 30px; width: 30px;">
                 </div>
                 <h6>Donor for 4 month</h6>
