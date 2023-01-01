@@ -179,25 +179,22 @@ $row = $result->fetch_assoc();
         <div style="text-align: center">
             <h4> Top Donors </h4>
         </div>
+   <?php
 
+        $query = "SELECT * FROM user join (SELECT u_id,SUM(d_amount) AS total FROM transaction WHERE donate_id =$p_id  GROUP by u_id ) AS tp ON tp.u_id = user.id order by total DESC limit 3";
+        $result = mysqli_query($conn,$query);
+        while($row = mysqli_fetch_assoc($result)) {
+
+            echo '
         <div class="donate-box-top-donor" >
             <img height="64" src="res/header-login-avatar.svg" width="64">
             <div class="donor-info">
-                <h5 class="text-0-margin-padding">Person 1</h5>
+                <h5 class="text-0-margin-padding">'.$row["name"].'</h5>
+                <h6 class="text-0-margin-padding">$'.$row["total"].'</h6>
             </div>
-        </div>
-        <div class="donate-box-top-donor" >
-            <img height="64" src="res/header-login-avatar.svg" width="64">
-            <div class="donor-info">
-                <h5 class="text-0-margin-padding">Person 2</h5>
-            </div>
-        </div>
-        <div class="donate-box-top-donor" >
-            <img height="64" src="res/header-login-avatar.svg" width="64">
-            <div class="donor-info">
-                <h5 class="text-0-margin-padding">Person 3</h5>
-            </div>
-        </div>
+        </div>';
+        }
+        ?>
 
 
 
