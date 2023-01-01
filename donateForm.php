@@ -42,6 +42,16 @@ $u_id = $_SESSION['id'];
           rel="stylesheet">
 
 </head>
+    <style>
+    .countperson
+    {
+        hover color: blue;
+
+    }
+    a{
+        color: white;
+    }
+</style>
 
 <body>
 
@@ -194,7 +204,7 @@ $u_id = $_SESSION['id'];
         $result=mysqli_query($conn,$qry);
         $row1 = $result->fetch_assoc();
         ?>
-        <a class="countperson" "?p_id=<?php echo $row1['p_id']; ?>
+        <a class="countperson" href="./userpanel_transaction_history.php?p_id=<?php echo $row1['p_id']; ?>">
         <h6><?php echo $row1['COUNT(transaction.donate_id)']; ?> donations </h6>
         </a>
         <hr style="background-color: white; height: 3px; border-radius: 1rem">
