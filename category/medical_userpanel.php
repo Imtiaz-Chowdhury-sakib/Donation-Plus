@@ -208,7 +208,7 @@ session_start();
                                 <?php echo substr("$res", 0, 200) ."....." ;?>
                                 <a href="../donateForm.php?p_id=<?php echo $result['p_id'];?>">Read More</a>
                             </p>
-                            <a class="btn btn-success" href="../donateForm.php??p_id=<?php echo $result['p_id'];?>">Donate</a>
+                            <a class="btn btn-success" href="../donateForm.php?p_id=<?php echo $result['p_id'];?>">Donate</a>
                         </div>
                     </div>
 
